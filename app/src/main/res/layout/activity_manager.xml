@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.ManagerActivity">
+    tools:context=".activities.ManagerActivity">
 
     <FrameLayout
         android:id="@+id/manager_activity_fragment_container"

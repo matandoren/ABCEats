@@ -6,4 +6,6 @@
     <string name="enter_restaurant_name_fragment_main">Enter Restaurant Name</string>
     <string name="enter_restaurant_street_fragment_main">Enter Restaurant Street</string>
     <string name="title_activity_inspector">InspectorActivity</string>
+    <string name="sign_in_username_hint">Email</string>
+    <string name="sign_in_password_hint">Password</string>
 </resources>
