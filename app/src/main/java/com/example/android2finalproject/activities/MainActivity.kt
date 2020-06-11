@@ -9,7 +9,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.android2finalproject.R
+import com.example.android2finalproject.fragments.main.MainFragment
 import com.example.android2finalproject.model.UsernameToRole
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -27,6 +31,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val manager: FragmentManager = supportFragmentManager
+        var fragment: Fragment? = manager.findFragmentById(R.id.main_activity_fragment_container)
+
+        if (fragment == null) {
+            fragment = MainFragment()
+            val transaction: FragmentTransaction = manager.beginTransaction()
+            transaction.add(R.id.main_activity_fragment_container, fragment, "0").commit()
+        }
 
     }
 

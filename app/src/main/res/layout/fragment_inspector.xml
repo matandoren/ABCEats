@@ -133,5 +133,14 @@ tools:context=".fragments.inspector.InspectorFragment">
     android:orientation="horizontal"
     app:layout_constraintGuide_percent="0.9" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="290dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

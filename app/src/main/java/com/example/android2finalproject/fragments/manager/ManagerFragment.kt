@@ -37,7 +37,7 @@ class ManagerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_main, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_manager, container, false)
 
         val addRestaurant = view.findViewById<Button>(R.id.add_restaurant_fragment_manager_Button)
         val addInspector = view.findViewById<Button>(R.id.add_inspector_fragment_manager_Button)
