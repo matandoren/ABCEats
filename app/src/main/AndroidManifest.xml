@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.InspectorActivity"></activity>
-        <activity android:name=".activities.ManagerActivity" />
+        <activity
+            android:name=".activities.InspectorActivity"
+            android:label="@string/inspector_activity_name" ></activity>
+        <activity
+            android:name=".activities.ManagerActivity"
+            android:label="@string/manage_activity_name" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
