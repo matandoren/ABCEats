@@ -16,7 +16,10 @@ import com.example.android2finalproject.model.Restaurant
 import com.example.android2finalproject.model.UsernameToRole
 import com.example.android2finalproject.recycler_view_adapters.InspectorsRecyclerViewAdapter
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -57,6 +60,7 @@ class ManagerFragment : Fragment() {
         val addViolation = view.findViewById<Button>(R.id.add_violation_fragment_manager_Button)
         val assignInspector = view.findViewById<Button>(R.id.assign_inspector_fragment_manager_Button)
         val removeInspector = view.findViewById<Button>(R.id.remove_inspector_fragment_manager_Button)
+        removeInspector.setOnClickListener { deleteInspector() }
         val removeRestaurant = view.findViewById<Button>(R.id.remove_restaurant_fragment_manager_Button)
 
 
@@ -153,7 +157,7 @@ class ManagerFragment : Fragment() {
                 }
                 val calendar = Calendar.getInstance()
                 restaurant.next_inspection_year = calendar.get(Calendar.YEAR)
-                restaurant.next_inspection_month = calendar.get(Calendar.MONTH)
+                restaurant.next_inspection_month = calendar.get(Calendar.MONTH) + 1
                 restaurant.next_inspection_day = calendar.get(Calendar.DAY_OF_MONTH)
 
                 val managerActivity = activity as ManagerActivity?
@@ -179,5 +183,51 @@ class ManagerFragment : Fragment() {
         }
         builder.setNegativeButton("Cancel") { _: DialogInterface, _: Int -> }
         builder.show()
+    }
+
+    private fun deleteInspector() {
+        val managerActivity = activity as ManagerActivity?
+        managerActivity!!.loadInspectorsRecyclerFragment(true, object: InspectorsRecyclerViewAdapter.ItemClickListener {
+            override fun onItemClick(username_clicked: String) {
+                AlertDialog.Builder(this@ManagerFragment.context!!).setTitle("Confirm removal")
+                    .setMessage("Are you sure you want to delete the inspector: $username_clicked?")
+                    .setPositiveButton("Yes") {_: DialogInterface, _: Int ->
+                        // query the database for this user
+                        val query = FirebaseDatabase.getInstance().reference.child("users").orderByChild("username").equalTo(username_clicked)
+                        val queryListener = object : ValueEventListener {
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                // Get the reference for that user
+                                for (childSnapShot in dataSnapshot.children)  // it is assumed that there will be only one child
+                                    childSnapShot.ref.removeValue()
+
+                                val query2 = FirebaseDatabase.getInstance().reference.child("restaurants").orderByChild("assigned_inspector_username").equalTo(username_clicked)
+                                query2.addListenerForSingleValueEvent(object : ValueEventListener{
+                                    override fun onCancelled(p0: DatabaseError) {
+                                        Toast.makeText(context, "Failed to delete this user", Toast.LENGTH_SHORT).show()
+                                    }
+
+                                    override fun onDataChange(p0: DataSnapshot) {
+                                        for (css in p0.children) { // it is assumed that there will be only one child
+                                            val restaurant = css.getValue(Restaurant::class.java)
+                                            restaurant?.assigned_inspector_username = "general_pool"
+                                            val key = css.key
+                                            if (key != null)
+                                                FirebaseDatabase.getInstance().reference.child("restaurants").child(key).setValue(restaurant)
+                                        }
+                                        Toast.makeText(context, "User deleted successfully", Toast.LENGTH_SHORT).show()
+                                        activity?.supportFragmentManager?.popBackStack()
+                                    }
+
+                                })
+                            }
+
+                            override fun onCancelled(databaseError: DatabaseError) {
+                                Toast.makeText(context, "Failed to delete this user", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        query.addListenerForSingleValueEvent(queryListener)
+                    }.setNegativeButton("No"){ _: DialogInterface, _: Int ->}.show()
+            }
+        })
     }
 }

@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity() {
                                         return
                                     }
                                 }
+                                Toast.makeText(this@MainActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
