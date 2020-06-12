@@ -14,6 +14,7 @@ import com.example.android2finalproject.R
 import com.example.android2finalproject.activities.ManagerActivity
 import com.example.android2finalproject.model.Restaurant
 import com.example.android2finalproject.model.UsernameToRole
+import com.example.android2finalproject.model.ViolationCategory
 import com.example.android2finalproject.recycler_view_adapters.InspectorsRecyclerViewAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -57,6 +58,7 @@ class ManagerFragment : Fragment() {
         val addInspector = view.findViewById<Button>(R.id.add_inspector_fragment_manager_Button)
         addInspector.setOnClickListener { addInspector() }
         val addViolationCategory = view.findViewById<Button>(R.id.add_violation_category_fragment_manager_Button)
+        addViolationCategory.setOnClickListener { addViolationCategory() }
         val addViolation = view.findViewById<Button>(R.id.add_violation_fragment_manager_Button)
         val assignInspector = view.findViewById<Button>(R.id.assign_inspector_fragment_manager_Button)
         val removeInspector = view.findViewById<Button>(R.id.remove_inspector_fragment_manager_Button)
@@ -230,4 +232,28 @@ class ManagerFragment : Fragment() {
             }
         })
     }
+
+    private fun addViolationCategory() {
+        val inputET = EditText(context)
+        inputET.hint = "Category name"
+
+        AlertDialog.Builder(this@ManagerFragment.context!!).setTitle("Add violation category").setView(inputET)
+            .setPositiveButton("Ok") {_: DialogInterface, _: Int ->
+                if (inputET.text.toString().isEmpty())
+                    Toast.makeText(context, "The category name must not be empty", Toast.LENGTH_LONG).show()
+                else {
+                    val violation_category = ViolationCategory(inputET.text.toString())
+                    val ref = FirebaseDatabase.getInstance().reference.child("violation_categories")
+                    val key = ref.push().key
+                    if (key == null)
+                        Toast.makeText(context, "Couldn't get push key for violation category", Toast.LENGTH_SHORT).show()
+                    else {
+                        ref.child(key).setValue(violation_category)
+                        Toast.makeText(context, "violation category added successfully", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }.setNegativeButton("Cancel"){ _: DialogInterface, _: Int ->}.show()
+    }
+
+
 }
