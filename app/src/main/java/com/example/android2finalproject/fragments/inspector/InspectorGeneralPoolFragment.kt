@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.android2finalproject.R
+import com.example.android2finalproject.model.Restaurant
 
 import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
 import com.example.android2finalproject.recycler_view_adapters.RestaurantCardItem
@@ -23,7 +24,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [InspectorGeneralPoolFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class InspectorGeneralPoolFragment : Fragment() {
+class InspectorGeneralPoolFragment(private val restaurantList: List<Pair<String, Restaurant>> = listOf(), private val listener: RestaurantAdapter.ItemClickListener? = null) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -52,10 +53,9 @@ class InspectorGeneralPoolFragment : Fragment() {
     }
 
 
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val restaurantList = generateList()
-        fragment_restaurant_recycler_view.adapter = RestaurantAdapter(restaurantList)
+        fragment_restaurant_recycler_view.adapter = RestaurantAdapter(restaurantList, listener)
         fragment_restaurant_recycler_view.layoutManager = LinearLayoutManager(activity)
         fragment_restaurant_recycler_view.setHasFixedSize(true)
     }
@@ -73,7 +73,7 @@ class InspectorGeneralPoolFragment : Fragment() {
         }
 
         return list
-    }*/
+    }
 
     companion object {
         /**
