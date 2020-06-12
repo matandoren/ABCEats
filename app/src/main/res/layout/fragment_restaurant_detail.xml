@@ -140,19 +140,7 @@
         android:text="Restaurant Name:"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_1" />
-
-    <TextView
-        android:id="@+id/restaurant_fragment_restaurant_name_answer_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_9"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_1" />
 
     <TextView
@@ -161,18 +149,7 @@
         android:layout_height="wrap_content"
         android:text="Address:"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_2" />
-
-    <TextView
-        android:id="@+id/restaurant_fragment_address_answer_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_9"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_2" />
 
     <TextView
@@ -181,18 +158,7 @@
         android:layout_height="wrap_content"
         android:text="Inspection Date:"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_3" />
-
-    <TextView
-        android:id="@+id/restaurant_fragment_inspection_date_answer_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_9"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_3" />
 
     <TextView
@@ -201,38 +167,16 @@
         android:layout_height="wrap_content"
         android:text="Result:"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_4" />
-
-    <TextView
-        android:id="@+id/restaurant_fragment_result_answer_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_9"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_4" />
 
     <TextView
         android:id="@+id/restaurant_fragment_points_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Points:"
+        android:text="Grade:"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_5" />
-
-    <TextView
-        android:id="@+id/restaurant_fragment_points_answer_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_9"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_5"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_5" />
 
 

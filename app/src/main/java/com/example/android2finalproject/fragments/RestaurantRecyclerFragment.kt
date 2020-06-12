@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.android2finalproject.R
+import com.example.android2finalproject.model.RestaurantAdapter
+import com.example.android2finalproject.model.RestaurantCardItem
+import kotlinx.android.synthetic.main.fragment_restaurant_recycler.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,11 +36,39 @@ class RestaurantRecyclerFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurant_recycler, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_restaurant_recycler, container, false)
+
+
+
+        //
+
+
+        return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val restaurantList = generateList()
+        fragment_restaurant_recycler_view.adapter = RestaurantAdapter(restaurantList)
+        fragment_restaurant_recycler_view.layoutManager = LinearLayoutManager(activity)
+        fragment_restaurant_recycler_view.setHasFixedSize(true)
+    }
+
+    // this method below just generate "random" restaurant with address and score to put in the recyclerview
+    private fun generateList(): List<RestaurantCardItem> {
+        val list = ArrayList<RestaurantCardItem>()
+        // need to download the data from firebase
+        // make for loop to put item correctly
+        for (i in 0 until 20) {
+            val restaurantName = "String from firebase"
+            val restaurantAddress = i.toString()
+            val item = RestaurantCardItem(R.drawable.score_a,restaurantName, restaurantAddress)
+            list += item
+        }
+
+        return list
     }
 
     companion object {

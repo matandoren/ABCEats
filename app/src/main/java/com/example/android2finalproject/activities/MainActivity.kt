@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.android2finalproject.R
+import com.example.android2finalproject.fragments.RestaurantRecyclerFragment
 import com.example.android2finalproject.fragments.main.MainFragment
 import com.example.android2finalproject.model.UsernameToRole
 import com.google.firebase.auth.FirebaseAuth
