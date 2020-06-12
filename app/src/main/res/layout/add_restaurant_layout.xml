@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/add_restaurant_name_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:hint="Restaurant name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/add_restaurant_street1_ET"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/add_restaurant_street1_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Street name "
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/add_restaurant_street2_ET"
+        app:layout_constraintEnd_toStartOf="@+id/add_restaurant_number1_ET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_restaurant_name_ET" />
+
+    <EditText
+        android:id="@+id/add_restaurant_number1_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="7"
+        android:hint="Number"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/add_restaurant_number2_ET"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_restaurant_street1_ET"
+        app:layout_constraintTop_toBottomOf="@+id/add_restaurant_name_ET" />
+
+    <EditText
+        android:id="@+id/add_restaurant_street2_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Street name (optional)"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/add_restaurant_city_ET"
+        app:layout_constraintEnd_toStartOf="@+id/add_restaurant_number2_ET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_restaurant_street1_ET" />
+
+    <EditText
+        android:id="@+id/add_restaurant_number2_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="7"
+        android:hint="Number (optional)"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/add_restaurant_city_ET"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_restaurant_street2_ET"
+        app:layout_constraintTop_toBottomOf="@+id/add_restaurant_number1_ET" />
+
+    <EditText
+        android:id="@+id/add_restaurant_city_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="City name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_restaurant_street2_ET"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

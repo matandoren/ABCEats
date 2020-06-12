@@ -117,13 +117,13 @@ class MainActivity : AppCompatActivity() {
                         query.addListenerForSingleValueEvent(queryListener)
 
                         /*val username = usernameET.text.toString()
-                        val pair = UsernameToRole(username, "manager")
+                        val pair = UsernameToRole("general_pool", "inspector")
                         val key = mDatabase.child("users").push().key
                         if (key == null)
                             Toast.makeText(this, "Couldn't get push key for user", Toast.LENGTH_SHORT).show()
                         else {
                             mDatabase.child("users").child(key).setValue(pair)
-                            Toast.makeText(this, "Manager added successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "general_pool added successfully", Toast.LENGTH_SHORT).show()
                         }*/
                     }
                 }.addOnFailureListener{
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
         }
-        builder.setNegativeButton("Cancel") { _: DialogInterface, i: Int -> }
+        builder.setNegativeButton("Cancel") { _: DialogInterface, _: Int -> }
         builder.show()
     }
 }
