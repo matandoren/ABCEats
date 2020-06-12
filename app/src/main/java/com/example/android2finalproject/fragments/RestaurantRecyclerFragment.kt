@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.android2finalproject.R
-import com.example.android2finalproject.model.RestaurantAdapter
-import com.example.android2finalproject.model.RestaurantCardItem
+import com.example.android2finalproject.model.Restaurant
+import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
+import com.example.android2finalproject.recycler_view_adapters.RestaurantCardItem
 import kotlinx.android.synthetic.main.fragment_restaurant_recycler.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,7 +23,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [RestaurantRecyclerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RestaurantRecyclerFragment : Fragment() {
+class RestaurantRecyclerFragment(private val restaurantList: List<Pair<String, Restaurant>> = listOf(), private val listener: RestaurantAdapter.ItemClickListener? = null) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -50,13 +51,13 @@ class RestaurantRecyclerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val restaurantList = generateList()
-        fragment_restaurant_recycler_view.adapter = RestaurantAdapter(restaurantList)
+        fragment_restaurant_recycler_view.adapter =
+            RestaurantAdapter(restaurantList, listener)
         fragment_restaurant_recycler_view.layoutManager = LinearLayoutManager(activity)
         fragment_restaurant_recycler_view.setHasFixedSize(true)
     }
 
-    // this method below just generate "random" restaurant with address and score to put in the recyclerview
+    /*// this method below just generate "random" restaurant with address and score to put in the recyclerview
     private fun generateList(): List<RestaurantCardItem> {
         val list = ArrayList<RestaurantCardItem>()
         // need to download the data from firebase
@@ -64,12 +65,17 @@ class RestaurantRecyclerFragment : Fragment() {
         for (i in 0 until 20) {
             val restaurantName = "String from firebase"
             val restaurantAddress = i.toString()
-            val item = RestaurantCardItem(R.drawable.score_a,restaurantName, restaurantAddress)
+            val item =
+                RestaurantCardItem(
+                    R.drawable.score_a,
+                    restaurantName,
+                    restaurantAddress
+                )
             list += item
         }
 
         return list
-    }
+    }*/
 
     companion object {
         /**
