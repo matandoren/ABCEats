@@ -10,10 +10,7 @@ import kotlinx.android.synthetic.main.inspectors_recycler_row_layout.view.*
 
 class InspectorsRecyclerViewAdapter(private val inspectors_username_list : List<String>, private val listener: ItemClickListener? = null) : RecyclerView.Adapter<InspectorsRecyclerViewAdapter.InspectorsRecyclerViewHolder>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): InspectorsRecyclerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InspectorsRecyclerViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.inspectors_recycler_row_layout, parent, false)
         return InspectorsRecyclerViewHolder(itemView)
     }
