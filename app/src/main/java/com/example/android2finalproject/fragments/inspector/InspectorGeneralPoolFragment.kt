@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.android2finalproject.R
-import com.example.android2finalproject.model.RestaurantAdapter
-import com.example.android2finalproject.model.RestaurantCardItem
+
+import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
+import com.example.android2finalproject.recycler_view_adapters.RestaurantCardItem
 import kotlinx.android.synthetic.main.fragment_restaurant_recycler.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -51,7 +52,7 @@ class InspectorGeneralPoolFragment : Fragment() {
     }
 
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val restaurantList = generateList()
         fragment_restaurant_recycler_view.adapter = RestaurantAdapter(restaurantList)
@@ -72,7 +73,7 @@ class InspectorGeneralPoolFragment : Fragment() {
         }
 
         return list
-    }
+    }*/
 
     companion object {
         /**
