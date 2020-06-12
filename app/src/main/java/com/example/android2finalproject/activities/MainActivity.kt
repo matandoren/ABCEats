@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.android2finalproject.R
-import com.example.android2finalproject.fragments.RestaurantRecyclerFragment
 import com.example.android2finalproject.fragments.main.MainFragment
 import com.example.android2finalproject.model.UsernameToRole
 import com.google.firebase.auth.FirebaseAuth
@@ -50,15 +49,17 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    fun openInspectorActivity() {
+    fun openInspectorActivity(username: String) {
         //TODO("Send an Email address to the activity")
         val intent = Intent(this, InspectorActivity::class.java)
+        intent.putExtra(username,"usernameEmail")
         startActivity(intent)
     }
 
-    fun openManagerActivity(){
+    fun openManagerActivity(username: String) {
         //TODO("Send an Email address to the activity")
         val intent = Intent(this, ManagerActivity::class.java)
+        intent.putExtra(username,"usernameEmail")
         startActivity(intent)
     }
 
@@ -100,11 +101,15 @@ class MainActivity : AppCompatActivity() {
                                 for (childSnapShot in dataSnapshot.children) { // it is assumed that there will be only one child
                                     val pair = childSnapShot.getValue(UsernameToRole::class.java)
                                     if (pair?.role.equals("manager")) {
-                                        openManagerActivity()
+                                        if (pair != null) {
+                                            openManagerActivity(pair.username)
+                                        }
                                         return
                                     }
                                     if (pair?.role.equals("inspector")) {
-                                        openInspectorActivity()
+                                        if (pair != null) {
+                                            openInspectorActivity(pair.username)
+                                        }
                                         return
                                     }
                                 }

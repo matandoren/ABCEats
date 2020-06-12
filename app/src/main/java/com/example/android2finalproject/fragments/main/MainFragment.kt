@@ -38,11 +38,9 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_main, container, false)
+
 
         /*
         Both ways are equal the difference the first we find the ID

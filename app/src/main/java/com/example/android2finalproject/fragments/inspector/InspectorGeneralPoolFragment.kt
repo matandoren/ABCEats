@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.android2finalproject.R
+import com.example.android2finalproject.activities.InspectorActivity
 import com.example.android2finalproject.model.Restaurant
 
 import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
