@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android2finalproject">
 
     <application
@@ -11,11 +12,19 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.InspectorActivity"
-            android:label="@string/inspector_activity_name" ></activity>
+            android:label="@string/title_activity_inspector"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activities.ManagerActivity"
-            android:label="@string/manage_activity_name" />
-        <activity android:name=".activities.MainActivity">
+            android:label="@string/manage_activity_name"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

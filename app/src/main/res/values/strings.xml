@@ -11,6 +11,6 @@
     <string name="sign_in_username_hint">Email</string>
     <string name="sign_in_password_hint">Password</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">My Restaurants</string>
+    <string name="tab_text_2">General Pool</string>
 </resources>

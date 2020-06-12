@@ -1,27 +1,26 @@
 package com.example.android2finalproject.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import com.example.android2finalproject.R
-import com.example.android2finalproject.fragments.inspector.InspectorFragment
+import com.example.android2finalproject.activities.ui.main.SectionsPagerAdapter
 
 class InspectorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inspector)
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.setupWithViewPager(viewPager)
 
-
-        val manager: FragmentManager = supportFragmentManager
-        var fragment: Fragment? = manager.findFragmentById(R.id.main_activity_fragment_container)
-
-        if (fragment == null) {
-            fragment = InspectorFragment()
-            val transaction: FragmentTransaction = manager.beginTransaction()
-            transaction.add(R.id.inspector_activity_fragment_container, fragment, "0").commit()
-        }
     }
 }
