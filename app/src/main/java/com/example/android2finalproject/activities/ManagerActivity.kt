@@ -8,11 +8,15 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.android2finalproject.R
 import com.example.android2finalproject.fragments.InspectorsRecyclerFragment
 import com.example.android2finalproject.fragments.RestaurantRecyclerFragment
+import com.example.android2finalproject.fragments.ViolationCategoryRecyclerFragment
 import com.example.android2finalproject.fragments.main.MainFragment
+import com.example.android2finalproject.fragments.manager.AddViolationFragment
 import com.example.android2finalproject.fragments.manager.ManagerFragment
 import com.example.android2finalproject.model.Restaurant
+import com.example.android2finalproject.model.ViolationCategory
 import com.example.android2finalproject.recycler_view_adapters.InspectorsRecyclerViewAdapter
 import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
+import com.example.android2finalproject.recycler_view_adapters.ViolationCategoryRecyclerAdapter
 
 class ManagerActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmentLauncher {
 
@@ -39,6 +43,16 @@ class ManagerActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFrag
     fun loadSearchRestaurantFragment(listener: RestaurantAdapter.ItemClickListener? = null) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.manager_activity_fragment_container, MainFragment(this, listener)).addToBackStack("main_fragment").commit()
+    }
+
+    fun loadViolationCategoryRecyclerFragment(listener: ViolationCategoryRecyclerAdapter.ItemClickListener? = null) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.manager_activity_fragment_container, ViolationCategoryRecyclerFragment(listener)).addToBackStack("main_fragment").commit()
+    }
+
+    fun loadAddViolationFragment(pair: Pair<String, ViolationCategory>) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.manager_activity_fragment_container, AddViolationFragment(pair)).addToBackStack("violation_categories_fragment").commit()
     }
 
     override fun launchRestaurantRecyclerFragment(

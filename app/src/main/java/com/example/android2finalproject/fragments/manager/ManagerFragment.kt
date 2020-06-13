@@ -18,6 +18,7 @@ import com.example.android2finalproject.model.UsernameToRole
 import com.example.android2finalproject.model.ViolationCategory
 import com.example.android2finalproject.recycler_view_adapters.InspectorsRecyclerViewAdapter
 import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
+import com.example.android2finalproject.recycler_view_adapters.ViolationCategoryRecyclerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -62,6 +63,7 @@ class ManagerFragment : Fragment() {
         val addViolationCategory = view.findViewById<Button>(R.id.add_violation_category_fragment_manager_Button)
         addViolationCategory.setOnClickListener { addViolationCategory() }
         val addViolation = view.findViewById<Button>(R.id.add_violation_fragment_manager_Button)
+        addViolation.setOnClickListener { addViolation() }
         val assignInspector = view.findViewById<Button>(R.id.assign_inspector_fragment_manager_Button)
         assignInspector.setOnClickListener { assignInspector() }
         val removeInspector = view.findViewById<Button>(R.id.remove_inspector_fragment_manager_Button)
@@ -306,6 +308,15 @@ class ManagerFragment : Fragment() {
                                 }.setNegativeButton("No") { _: DialogInterface, _: Int -> }.show()
                         }
                     })
+            }
+        })
+    }
+
+    private fun addViolation() {
+        val managerActivity = activity as ManagerActivity?
+        managerActivity!!.loadViolationCategoryRecyclerFragment(object : ViolationCategoryRecyclerAdapter.ItemClickListener {
+            override fun onItemClick(violation_category_clicked: Pair<String, ViolationCategory>) {
+                managerActivity.loadAddViolationFragment(violation_category_clicked)
             }
         })
     }
