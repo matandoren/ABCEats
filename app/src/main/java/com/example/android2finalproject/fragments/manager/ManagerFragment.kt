@@ -242,13 +242,13 @@ class ManagerFragment : Fragment() {
                 if (inputET.text.toString().isEmpty())
                     Toast.makeText(context, "The category name must not be empty", Toast.LENGTH_LONG).show()
                 else {
-                    val violation_category = ViolationCategory(inputET.text.toString())
+                    val violationCategory = ViolationCategory(inputET.text.toString())
                     val ref = FirebaseDatabase.getInstance().reference.child("violation_categories")
                     val key = ref.push().key
                     if (key == null)
                         Toast.makeText(context, "Couldn't get push key for violation category", Toast.LENGTH_SHORT).show()
                     else {
-                        ref.child(key).setValue(violation_category)
+                        ref.child(key).setValue(violationCategory)
                         Toast.makeText(context, "violation category added successfully", Toast.LENGTH_SHORT).show()
                     }
                 }

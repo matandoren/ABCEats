@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.android2finalproject.R
+import com.example.android2finalproject.fragments.RestaurantRecyclerFragment
 import com.example.android2finalproject.fragments.main.MainFragment
+import com.example.android2finalproject.model.Restaurant
 import com.example.android2finalproject.model.UsernameToRole
+import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmentLauncher {
     private val mAuth = FirebaseAuth.getInstance()
     private val mDatabase = FirebaseDatabase.getInstance().reference
     //private val email ="timakudev@gmail.com"
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         var fragment: Fragment? = manager.findFragmentById(R.id.main_activity_fragment_container)
 
         if (fragment == null) {
-            fragment = MainFragment()
+            fragment = MainFragment(this)
             val transaction: FragmentTransaction = manager.beginTransaction()
             transaction.add(R.id.main_activity_fragment_container, fragment, "0").commit()
         }
@@ -50,16 +53,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openInspectorActivity(username: String) {
-        //TODO("Send an Email address to the activity")
         val intent = Intent(this, InspectorActivity::class.java)
-        intent.putExtra(username,"usernameEmail")
+        intent.putExtra("usernameEmail", username)
         startActivity(intent)
     }
 
     fun openManagerActivity(username: String) {
-        //TODO("Send an Email address to the activity")
         val intent = Intent(this, ManagerActivity::class.java)
-        intent.putExtra(username,"usernameEmail")
+        intent.putExtra("usernameEmail", username)
         startActivity(intent)
     }
 
@@ -139,5 +140,13 @@ class MainActivity : AppCompatActivity() {
         }
         builder.setNegativeButton("Cancel") { _: DialogInterface, _: Int -> }
         builder.show()
+    }
+
+    override fun launchRestaurantRecyclerFragment(
+        list: List<Pair<String, Restaurant>>,
+        listener: RestaurantAdapter.ItemClickListener?
+    ) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_activity_fragment_container, RestaurantRecyclerFragment(list)).addToBackStack("search_fragment").commit()
     }
 }
