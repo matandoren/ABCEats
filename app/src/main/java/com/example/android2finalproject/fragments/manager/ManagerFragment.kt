@@ -63,6 +63,7 @@ class ManagerFragment : Fragment() {
         addViolationCategory.setOnClickListener { addViolationCategory() }
         val addViolation = view.findViewById<Button>(R.id.add_violation_fragment_manager_Button)
         val assignInspector = view.findViewById<Button>(R.id.assign_inspector_fragment_manager_Button)
+        assignInspector.setOnClickListener { assignInspector() }
         val removeInspector = view.findViewById<Button>(R.id.remove_inspector_fragment_manager_Button)
         removeInspector.setOnClickListener { deleteInspector() }
         val removeRestaurant = view.findViewById<Button>(R.id.remove_restaurant_fragment_manager_Button)
@@ -271,6 +272,40 @@ class ManagerFragment : Fragment() {
                         Toast.makeText(context, "the restaurant was deleted successfully", Toast.LENGTH_SHORT).show()
                         activity?.supportFragmentManager?.popBackStack("main_fragment", POP_BACK_STACK_INCLUSIVE)
                     }.setNegativeButton("No"){ _: DialogInterface, _: Int ->}.show()
+            }
+        })
+    }
+
+    private fun assignInspector() {
+        val managerActivity = activity as ManagerActivity?
+        managerActivity!!.loadSearchRestaurantFragment(object :
+            RestaurantAdapter.ItemClickListener {
+            override fun onItemClick(restaurant_clicked: Pair<String, Restaurant>) {
+                val key = restaurant_clicked.first
+                val restaurant = restaurant_clicked.second
+                managerActivity.loadInspectorsRecyclerFragment(false,
+                    object : InspectorsRecyclerViewAdapter.ItemClickListener {
+                        override fun onItemClick(username_clicked: String) {
+                            AlertDialog.Builder(this@ManagerFragment.context!!)
+                                .setTitle("Confirm assignment")
+                                .setMessage("Are you sure you want to assign the inspector: $username_clicked to the restaurant: ${restaurant.name}" +
+                                        " instead of the previously assigned inspector: ${restaurant.assigned_inspector_username}?")
+                                .setPositiveButton("Yes") { _: DialogInterface, _: Int ->
+                                    restaurant.assigned_inspector_username = username_clicked
+                                    FirebaseDatabase.getInstance().reference.child("restaurants")
+                                        .child(key).setValue(restaurant)
+                                    Toast.makeText(
+                                        context,
+                                        "the inspector was assigned successfully",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    activity?.supportFragmentManager?.popBackStack(
+                                        "main_fragment",
+                                        POP_BACK_STACK_INCLUSIVE
+                                    )
+                                }.setNegativeButton("No") { _: DialogInterface, _: Int -> }.show()
+                        }
+                    })
             }
         })
     }

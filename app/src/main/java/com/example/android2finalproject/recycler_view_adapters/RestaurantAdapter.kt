@@ -35,7 +35,7 @@ class RestaurantAdapter(private val restaurantList: List<Pair<String, Restaurant
         var tempStr = "${currentItem.second.street1} ${currentItem.second.house_number1}"
         if (currentItem.second.street2 != null) tempStr += "\n${currentItem.second.street1} ${currentItem.second.house_number1}"
         tempStr += ", ${currentItem.second.city}"
-        holder.restaurantAddress.text =tempStr
+        holder.restaurantAddress.text = tempStr
     }
 
     override fun getItemCount() = restaurantList.size
