@@ -34,6 +34,7 @@ class RestaurantAdapter(private val restaurantList: List<Pair<String, Restaurant
         holder.restaurantName.text = currentItem.second.name
         var tempStr = "${currentItem.second.street1} ${currentItem.second.house_number1}"
         if (currentItem.second.street2 != null) tempStr += "\n${currentItem.second.street1} ${currentItem.second.house_number1}"
+        tempStr += ", ${currentItem.second.city}"
         holder.restaurantAddress.text =tempStr
     }
 
@@ -43,6 +44,7 @@ class RestaurantAdapter(private val restaurantList: List<Pair<String, Restaurant
         val imageView: ImageView = itemView.card_score
         val restaurantName: TextView = itemView.card_restaurant_name
         val restaurantAddress: TextView = itemView.card_address
+        init{itemView.setOnClickListener(this)}
 
         override fun onClick(v: View?) {
             listener?.onItemClick(restaurantList[adapterPosition])

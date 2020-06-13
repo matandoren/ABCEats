@@ -147,6 +147,6 @@ class MainActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmen
         listener: RestaurantAdapter.ItemClickListener?
     ) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.main_activity_fragment_container, RestaurantRecyclerFragment(list)).addToBackStack("search_fragment").commit()
+        transaction.replace(R.id.main_activity_fragment_container, RestaurantRecyclerFragment(list, listener)).addToBackStack("search_fragment").commit()
     }
 }

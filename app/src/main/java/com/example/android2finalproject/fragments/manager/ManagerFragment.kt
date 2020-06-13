@@ -10,12 +10,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import com.example.android2finalproject.R
 import com.example.android2finalproject.activities.ManagerActivity
 import com.example.android2finalproject.model.Restaurant
 import com.example.android2finalproject.model.UsernameToRole
 import com.example.android2finalproject.model.ViolationCategory
 import com.example.android2finalproject.recycler_view_adapters.InspectorsRecyclerViewAdapter
+import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -64,6 +66,7 @@ class ManagerFragment : Fragment() {
         val removeInspector = view.findViewById<Button>(R.id.remove_inspector_fragment_manager_Button)
         removeInspector.setOnClickListener { deleteInspector() }
         val removeRestaurant = view.findViewById<Button>(R.id.remove_restaurant_fragment_manager_Button)
+        removeRestaurant.setOnClickListener { removeRestaurant() }
 
 
 
@@ -255,5 +258,20 @@ class ManagerFragment : Fragment() {
             }.setNegativeButton("Cancel"){ _: DialogInterface, _: Int ->}.show()
     }
 
-
+    private fun removeRestaurant() {
+        val managerActivity = activity as ManagerActivity?
+        managerActivity!!.loadSearchRestaurantFragment(object: RestaurantAdapter.ItemClickListener {
+            override fun onItemClick(restaurant_clicked: Pair<String, Restaurant>) {
+                val key = restaurant_clicked.first
+                val restaurant = restaurant_clicked.second
+                AlertDialog.Builder(this@ManagerFragment.context!!).setTitle("Confirm removal")
+                    .setMessage("Are you sure you want to remove the restaurant: ${restaurant.name}?")
+                    .setPositiveButton("Yes") {_: DialogInterface, _: Int ->
+                        FirebaseDatabase.getInstance().reference.child("restaurants").child(key).removeValue()
+                        Toast.makeText(context, "the restaurant was deleted successfully", Toast.LENGTH_SHORT).show()
+                        activity?.supportFragmentManager?.popBackStack("main_fragment", POP_BACK_STACK_INCLUSIVE)
+                    }.setNegativeButton("No"){ _: DialogInterface, _: Int ->}.show()
+            }
+        })
+    }
 }

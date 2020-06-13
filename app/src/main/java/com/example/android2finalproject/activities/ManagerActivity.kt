@@ -7,10 +7,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.android2finalproject.R
 import com.example.android2finalproject.fragments.InspectorsRecyclerFragment
+import com.example.android2finalproject.fragments.RestaurantRecyclerFragment
+import com.example.android2finalproject.fragments.main.MainFragment
 import com.example.android2finalproject.fragments.manager.ManagerFragment
+import com.example.android2finalproject.model.Restaurant
 import com.example.android2finalproject.recycler_view_adapters.InspectorsRecyclerViewAdapter
+import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
 
-class ManagerActivity : AppCompatActivity() {
+class ManagerActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmentLauncher {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +22,7 @@ class ManagerActivity : AppCompatActivity() {
         val usernameEmail = intent.getStringExtra("usernameEmail")
 
         val manager: FragmentManager = supportFragmentManager
-        var fragment: Fragment? = manager.findFragmentById(R.id.main_activity_fragment_container)
+        var fragment: Fragment? = manager.findFragmentById(R.id.manager_activity_fragment_container)
 
         if (fragment == null) {
             fragment = ManagerFragment()
@@ -30,5 +34,18 @@ class ManagerActivity : AppCompatActivity() {
     fun loadInspectorsRecyclerFragment(excludeGeneralPool: Boolean = false, listener: InspectorsRecyclerViewAdapter.ItemClickListener? = null) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.manager_activity_fragment_container, InspectorsRecyclerFragment(excludeGeneralPool, listener)).addToBackStack(null).commit()
+    }
+
+    fun loadSearchRestaurantFragment(listener: RestaurantAdapter.ItemClickListener? = null) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.manager_activity_fragment_container, MainFragment(this, listener)).addToBackStack("main_fragment").commit()
+    }
+
+    override fun launchRestaurantRecyclerFragment(
+        list: List<Pair<String, Restaurant>>,
+        listener: RestaurantAdapter.ItemClickListener?
+    ) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.manager_activity_fragment_container, RestaurantRecyclerFragment(list, listener)).addToBackStack("search_fragment").commit()
     }
 }
