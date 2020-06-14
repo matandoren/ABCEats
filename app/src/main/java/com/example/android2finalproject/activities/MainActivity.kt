@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.android2finalproject.R
+import com.example.android2finalproject.fragments.RestaurantDetailFragment
 import com.example.android2finalproject.fragments.RestaurantRecyclerFragment
+import com.example.android2finalproject.fragments.main.InspectionDetailsFragment
 import com.example.android2finalproject.fragments.main.MainFragment
+import com.example.android2finalproject.model.Inspection
 import com.example.android2finalproject.model.Restaurant
 import com.example.android2finalproject.model.UsernameToRole
 import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
@@ -39,7 +42,11 @@ class MainActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmen
         var fragment: Fragment? = manager.findFragmentById(R.id.main_activity_fragment_container)
 
         if (fragment == null) {
-            fragment = MainFragment(this)
+            fragment = MainFragment(this, object: RestaurantAdapter.ItemClickListener {
+                override fun onItemClick(restaurant_clicked: Pair<String, Restaurant>) {
+                    loadRestaurantDetailFragment(restaurant_clicked)
+                }
+            })
             val transaction: FragmentTransaction = manager.beginTransaction()
             transaction.add(R.id.main_activity_fragment_container, fragment, "0").commit()
         }
@@ -140,6 +147,16 @@ class MainActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmen
         }
         builder.setNegativeButton("Cancel") { _: DialogInterface, _: Int -> }
         builder.show()
+    }
+
+    fun loadInspectionDetailsFragment(inspection: Inspection) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_activity_fragment_container, InspectionDetailsFragment(inspection)).addToBackStack(null).commit()
+    }
+
+    fun loadRestaurantDetailFragment(restaurantAndKey: Pair<String, Restaurant>) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_activity_fragment_container, RestaurantDetailFragment(restaurantAndKey)).addToBackStack(null).commit()
     }
 
     override fun launchRestaurantRecyclerFragment(
