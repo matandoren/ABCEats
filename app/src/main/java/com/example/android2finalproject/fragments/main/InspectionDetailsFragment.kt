@@ -72,6 +72,7 @@ class InspectionDetailsFragment(private val inspection: Inspection? = null) : Fr
             textView.layoutParams = layoutParams
             textView.text = "$i) ${pair.second.description}"
             view.inspection_details_linear_layout.addView(textView)
+            i++
         }
 
         return view
