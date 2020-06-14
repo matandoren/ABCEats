@@ -10,7 +10,11 @@ import com.example.android2finalproject.fragments.RestaurantRecyclerFragment
 import com.example.android2finalproject.fragments.ViolationCategoryRecyclerFragment
 import com.example.android2finalproject.fragments.inspector.InspectorFragment
 import com.example.android2finalproject.fragments.inspector.RestaurantInspectionFragment
+import com.example.android2finalproject.fragments.inspector.ViolationRecyclerFragment
+import com.example.android2finalproject.model.Inspection
 import com.example.android2finalproject.model.Restaurant
+import com.example.android2finalproject.model.Violation
+import com.example.android2finalproject.model.ViolationCategory
 import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
 import com.example.android2finalproject.recycler_view_adapters.ViolationCategoryRecyclerAdapter
 
@@ -44,7 +48,6 @@ class InspectorActivity : AppCompatActivity() {
         val fragment = RestaurantInspectionFragment(key, restaurant)
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.inspector_activity_fragment_container,fragment,"1").addToBackStack(null).commit()
-
     }
 
 
@@ -53,8 +56,9 @@ class InspectorActivity : AppCompatActivity() {
         transaction.replace(R.id.inspector_activity_fragment_container, ViolationCategoryRecyclerFragment(listener)).addToBackStack("inspector_fragment").commit()
     }
 
-    fun loadChooseViolationFragment(listener: ViolationCategoryRecyclerAdapter.ItemClickListener? = null) {
+    fun loadChooseViolationFragment(violation_category : ViolationCategory, inspection : Inspection) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.manager_activity_fragment_container, ViolationCategoryRecyclerFragment(listener)).addToBackStack("violation_categories_fragment").commit()
+        transaction.replace(R.id.inspector_activity_fragment_container, ViolationRecyclerFragment(violation_category, inspection)).addToBackStack("violation_categories_fragment").commit()
     }
+
 }

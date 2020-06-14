@@ -81,11 +81,11 @@ class InspectorFragment(private val userName: String?=null) : Fragment() {
                         val key = restaurant_clicked.first
                         val restaurant = restaurant_clicked.second
                         AlertDialog.Builder(this@InspectorFragment.context!!)
-                            .setTitle("Confirm assignment")
-                            .setMessage("Are you sure you want to start inspection to: ${restaurant.name}")
+                            .setTitle("Conduct Inspection")
+                            .setMessage("Are you sure you want to conduct inspection to: ${restaurant.name}")
                             .setPositiveButton("Yes"){ _: DialogInterface, _: Int->
-                                //val inspectorActivity = activity as InspectorActivity?
-                                //inspectorActivity!!.loadRestaurantInspection(key, restaurant)
+                                val inspectorActivity = activity as InspectorActivity?
+                                inspectorActivity!!.loadRestaurantInspection(key, restaurant)
                                 //FirebaseDatabase.getInstance().reference.child("restaurants").child(key).setValue(restaurant)
                             }
                             .setNegativeButton("No"){_: DialogInterface, _: Int->}.show()
@@ -95,13 +95,6 @@ class InspectorFragment(private val userName: String?=null) : Fragment() {
 
 
         })
-        /*val inspectorActivity = activity as InspectorActivity?
-        inspectorActivity!!.loadRestaurantRecyclerFragment2(object : RestaurantAdapter.ItemClickListener {
-            override fun onItemClick(restaurant_clicked: Pair<String, Restaurant>) {
-                inspectorActivity.loadRestaurantRecyclerFragment2(restaurant_clicked)
-            }
-
-        })*/
     }
 
     private fun openGeneralPoolRecycler() {

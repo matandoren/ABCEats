@@ -60,20 +60,19 @@ class InspectionDetailsFragment(private val inspection: Inspection? = null) : Fr
                     if (violation != null && key != null)
                         allViolations.add(Pair(key, violation))
                 }
+                val filteredViolations = allViolations.filter{pair -> inspection?.violations_keys?.contains(pair.first) ?: false}
+                val layoutParams : LinearLayout.LayoutParams =
+                    LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                var i = 1
+                for (pair in filteredViolations) {
+                    val textView = TextView(context)
+                    textView.layoutParams = layoutParams
+                    textView.text = "$i) ${pair.second.description}"
+                    view.inspection_details_linear_layout.addView(textView)
+                    i++
+                }
             }
         })
-
-        val filteredViolations = allViolations.filter{pair -> inspection?.violations_keys?.contains(pair.first) ?: false}
-        val layoutParams : LinearLayout.LayoutParams =
-            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        var i = 1
-        for (pair in filteredViolations) {
-            val textView = TextView(context)
-            textView.layoutParams = layoutParams
-            textView.text = "$i) ${pair.second.description}"
-            view.inspection_details_linear_layout.addView(textView)
-            i++
-        }
 
         return view
     }
