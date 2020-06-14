@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.inspector.InspectorFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vertical_1"
@@ -132,107 +132,25 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
 
-    <EditText
-        android:id="@+id/enter_restaurant_name_fragment_main_editText"
+    <Button
+        android:id="@+id/fragment_inspector_open_my_restaurants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/enter_restaurant_name_fragment_main"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_8"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_1" />
-
-    <EditText
-        android:id="@+id/enter_restaurant_street_fragment_main_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/enter_restaurant_street_fragment_main"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_8"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_2" />
-
-    <TextView
-        android:id="@+id/search_restaurant_choose_grade_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose Grade"
-        android:textSize="18sp"
+        android:text="open my restaurants"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_6"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_8"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_3" />
 
-    <TextView
-        android:id="@+id/search_restaurant_title_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search Restaurant"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/search_restaurant_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_4">
-
-        <RadioButton
-            android:id="@+id/radio_button_a_grade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="A" />
-
-        <RadioButton
-            android:id="@+id/radio_button_b_grade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="B" />
-
-        <RadioButton
-            android:id="@+id/radio_button_c_grade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="C" />
-
-        <RadioButton
-            android:id="@+id/radio_button_d_grade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D" />
-
-        <RadioButton
-            android:id="@+id/radio_button_not_graded"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="pending inspection" />
-
-        <RadioButton
-            android:id="@+id/radio_button_any"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Any" />
-    </RadioGroup>
-
     <Button
-        android:id="@+id/search_button"
+        android:id="@+id/fragment_inspector_open_general_pool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@android:string/search_go"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_8" />
+        android:text="open general pool"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_8"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
