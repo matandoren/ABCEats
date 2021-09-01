@@ -107,6 +107,10 @@ class MainFragment(private val launcher: RestaurantRecyclerFragmentLauncher? = n
                         postStreetFilterList.filter{pair: Pair<String, Restaurant> ->
                             pair.second.grade == "D"
                         }
+                    else if (radioGroup.checkedRadioButtonId == R.id.radio_button_not_graded)
+                        postStreetFilterList.filter{pair: Pair<String, Restaurant> ->
+                            pair.second.grade == "pending inspection"
+                        }
                     else
                         postStreetFilterList
 

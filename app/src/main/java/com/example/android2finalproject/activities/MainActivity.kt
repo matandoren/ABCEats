@@ -105,7 +105,8 @@ class MainActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmen
                         val query = mDatabase.child("users").orderByChild("username").equalTo(username)
                         val queryListener = object : ValueEventListener {
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                // Get UsernameToRole object and find what is the role of this user
+                                // Get UsernameToRole object and find what is the role of this
+
                                 for (childSnapShot in dataSnapshot.children) { // it is assumed that there will be only one child
                                     val pair = childSnapShot.getValue(UsernameToRole::class.java)
                                     if (pair?.role.equals("manager")) {

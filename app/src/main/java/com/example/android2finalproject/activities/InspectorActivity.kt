@@ -45,7 +45,7 @@ class InspectorActivity : AppCompatActivity() {
     }
 
     fun loadRestaurantInspection(key: String, restaurant: Restaurant) {
-        val fragment = RestaurantInspectionFragment(key, restaurant)
+        val fragment = RestaurantInspectionFragment(key, restaurant, myEmail)
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.inspector_activity_fragment_container,fragment,"1").addToBackStack(null).commit()
     }
