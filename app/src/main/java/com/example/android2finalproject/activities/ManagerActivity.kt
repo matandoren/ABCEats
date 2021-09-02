@@ -17,6 +17,7 @@ import com.example.android2finalproject.model.ViolationCategory
 import com.example.android2finalproject.recycler_view_adapters.InspectorsRecyclerViewAdapter
 import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
 import com.example.android2finalproject.recycler_view_adapters.ViolationCategoryRecyclerAdapter
+import com.google.firebase.auth.FirebaseAuth
 
 class ManagerActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmentLauncher {
 
@@ -33,6 +34,11 @@ class ManagerActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFrag
             val transaction: FragmentTransaction = manager.beginTransaction()
             transaction.add(R.id.manager_activity_fragment_container, fragment, "0").commit()
         }
+    }
+
+    override fun onDestroy() {
+        FirebaseAuth.getInstance().signOut()
+        super.onDestroy()
     }
 
     fun loadInspectorsRecyclerFragment(excludeGeneralPool: Boolean = false, listener: InspectorsRecyclerViewAdapter.ItemClickListener? = null) {

@@ -13,10 +13,10 @@ import com.example.android2finalproject.fragments.inspector.RestaurantInspection
 import com.example.android2finalproject.fragments.inspector.ViolationRecyclerFragment
 import com.example.android2finalproject.model.Inspection
 import com.example.android2finalproject.model.Restaurant
-import com.example.android2finalproject.model.Violation
 import com.example.android2finalproject.model.ViolationCategory
 import com.example.android2finalproject.recycler_view_adapters.RestaurantAdapter
 import com.example.android2finalproject.recycler_view_adapters.ViolationCategoryRecyclerAdapter
+import com.google.firebase.auth.FirebaseAuth
 
 class InspectorActivity : AppCompatActivity() {
     var myEmail = ""
@@ -37,6 +37,11 @@ class InspectorActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onDestroy() {
+        FirebaseAuth.getInstance().signOut()
+        super.onDestroy()
     }
 
     fun loadRestaurantRecyclerFragment(restaurantList: List<Pair<String, Restaurant>>,listener: RestaurantAdapter.ItemClickListener){

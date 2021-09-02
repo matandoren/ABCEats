@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity(), MainFragment.RestaurantRecyclerFragmen
             val transaction: FragmentTransaction = manager.beginTransaction()
             transaction.add(R.id.main_activity_fragment_container, fragment, "0").commit()
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
